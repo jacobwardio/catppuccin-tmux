@@ -73,13 +73,6 @@ main() {
   left_separator="$(get_tmux_option "@catppuccin_left_separator" "")"
   readonly left_separator
 
-  local branch
-  branch="$(get_tmux_option "@catppuccin_branch" "off")"
-  readonly branch
-
-  local branch_icon
-  branch_icon="$(get_tmux_option "catppuccin_branch_icon" "")"
-
   local user
   user="$(get_tmux_option "@catppuccin_user" "off")"
   readonly user
@@ -119,9 +112,6 @@ main() {
   # These variables are the defaults so that the setw and set calls are easier to parse.
   local show_directory
   readonly show_directory="#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]$right_separator#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics]$directory_icon  #[fg=$thm_fg,bg=$thm_gray] #{b:pane_current_path} #{?client_prefix,#[fg=$thm_red]"
-
-  local show_branch
-  readonly show_branch="#[fg=$thm_orange,bg=$thm_bg,nobold,nounderscore,noitalics]$right_separator#[fg=$thm_bg,bg=$thm_orange,nobold,nounderscore,noitalics]$directory_icon  #[fg=$thm_fg,bg=$thm_gray] #(git -C #{b:pane_current_path} rev-parse --abbrev-ref HEAD) #{?client_prefix,#[fg=$thm_red]"
 
   local show_window
   readonly show_window="#[fg=$thm_pink,bg=$thm_bg,nobold,nounderscore,noitalics]$right_separator#[fg=$thm_bg,bg=$thm_pink,nobold,nounderscore,noitalics]$window_icon #[fg=$thm_fg,bg=$thm_gray] #W #{?client_prefix,#[fg=$thm_red]"
@@ -163,7 +153,7 @@ main() {
   # NOTE: With the @catppuccin_window_tabs_enabled set to on, we're going to
   # update the right_column1 and the window_status_* variables.
   if [[ "${wt_enabled}" == "on" ]]; then
-    right_column1=$show_directory$show_branch
+    right_column1=$show_directory
     window_status_format=$show_window_in_window_status
     window_status_current_format=$show_window_in_window_status_current
   fi
