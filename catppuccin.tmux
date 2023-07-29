@@ -95,7 +95,7 @@ main() {
   readonly window_icon
 
   local session_icon
-  session_icon="$(get_tmux_option "@catppuccin_session_icon" "")"
+  session_icon="$(get_tmux_option "@catppuccin_session_icon" "󰒋")"
   readonly session_icon
 
   local host_icon
